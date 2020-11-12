@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import FormTextInput from "../components/FormTextInput";
+import FormRadioInput from "../components/FormRadioInput";
 
 class SubmitFormContainer extends Component {
   constructor(props) {
@@ -9,11 +10,11 @@ class SubmitFormContainer extends Component {
       description: "",
       youtube_url: "",
       user_email: "",
-      camera: "Mevo Start",
+      model: "Mevo Start",
     };
   }
 
-  handleTextInputChange = (event) => {
+  handleFormInputChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
     });
@@ -31,14 +32,14 @@ class SubmitFormContainer extends Component {
           name="title"
           placeholder="Video Title"
           value={this.state.title}
-          handleTextInputChange={this.handleTextInputChange}
+          handleFormInputChange={this.handleFormInputChange}
         />
 
         <FormTextInput
           name="description"
           placeholder="Quick Description"
           value={this.state.description}
-          handleTextInputChange={this.handleTextInputChange}
+          handleFormInputChange={this.handleFormInputChange}
         />
 
         <p className="text-sm text-center mb-2">
@@ -48,7 +49,7 @@ class SubmitFormContainer extends Component {
           name="youtube_url"
           placeholder="YouTube Link"
           value={this.state.youtube_url}
-          handleTextInputChange={this.handleTextInputChange}
+          handleFormInputChange={this.handleFormInputChange}
         />
         <p className="text-sm text-center mb-2">
           Emails are not shared publicly
@@ -57,26 +58,25 @@ class SubmitFormContainer extends Component {
           name="user_email"
           placeholder="Contact Email"
           value={this.state.user_email}
-          handleTextInputChange={this.handleTextInputChange}
+          handleFormInputChange={this.handleFormInputChange}
         />
 
         <p className="text-center uppercase font-bold text-sm">
           Footage shot with
         </p>
-        <div className="border border-red-600 flex justify-center space-x-8">
-          <label>
-            <input
-              type="radio"
-              name="cameraType"
-              value="mevoStart"
-              defaultChecked
-            />
-            Mevo Start
-          </label>
-          <label>
-            <input type="radio" name="cameraType" value="mevoCore" />
-            Mevo Core
-          </label>
+        <div className="flex justify-center space-x-8 mt-2 mb-4">
+          <FormRadioInput
+            name="model"
+            value={"Mevo Start"}
+            currentModel={this.state.model}
+            handleFormInputChange={this.handleFormInputChange}
+          />
+          <FormRadioInput
+            name="model"
+            value={"Mevo Core"}
+            currentModel={this.state.model}
+            handleFormInputChange={this.handleFormInputChange}
+          />
         </div>
         <div>
           <input

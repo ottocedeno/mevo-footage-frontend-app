@@ -1,9 +1,8 @@
 import React from "react";
+import SubmitPage from "./pages/SubmitPage";
 
 function App() {
-  return (
-    <div className="text-center flex flex-col h-screen bg-red-600">Hello</div>
-  );
+  return <SubmitPage />;
 }
 
 export default App;
