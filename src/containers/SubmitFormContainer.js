@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import FormTextInput from "../components/FormTextInput";
 import FormRadioInput from "../components/FormRadioInput";
+import FormCheckboxInput from "../components/FormCheckboxInput";
 import FormSubmitButton from "../components/FormSubmitButton";
 
 class SubmitFormContainer extends Component {
@@ -11,10 +12,13 @@ class SubmitFormContainer extends Component {
       description: "",
       youtube_url: "",
       user_email: "",
-      model: "Mevo Start",
+      model: this.cameras[0],
       category_name: this.categories[0],
+      authorized_to_share: false,
     };
   }
+
+  cameras = ["Mevo Plus", "Mevo Start", "Mevo Core"];
 
   categories = [
     "House of Worship",
@@ -31,6 +35,12 @@ class SubmitFormContainer extends Component {
   handleFormInputChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
+    });
+  };
+
+  handleAuthorizationCheck = (event) => {
+    this.setState({
+      authorized_to_share: !this.state.authorized_to_share,
     });
   };
 
@@ -82,19 +92,18 @@ class SubmitFormContainer extends Component {
         <p className="text-center uppercase font-bold text-sm">
           Footage shot with
         </p>
-        <div className="flex flex-col mt-2 mb-4">
-          <FormRadioInput
-            name="model"
-            value={"Mevo Start"}
-            current={this.state.model}
-            handleFormInputChange={this.handleFormInputChange}
-          />
-          <FormRadioInput
-            name="model"
-            value={"Mevo Core"}
-            current={this.state.model}
-            handleFormInputChange={this.handleFormInputChange}
-          />
+        <div className="flex flex-col mt-2 mb-4 pl-4">
+          {this.cameras.map((camera, id) => {
+            return (
+              <FormRadioInput
+                key={id}
+                name="model"
+                value={camera}
+                current={this.state.model}
+                handleFormInputChange={this.handleFormInputChange}
+              />
+            );
+          })}
         </div>
       </div>
     );
@@ -123,15 +132,35 @@ class SubmitFormContainer extends Component {
     );
   };
 
+  renderAuthorization = () => {
+    return (
+      <div className="bg-gray-200 py-3 rounded-md mb-6">
+        <p className="text-center uppercase font-bold text-sm">Authorization</p>
+        <p className="text-sm px-4 mt-2">
+          You authorize that you are the owner of this content and hereby give
+          Mevo Inc, permission to share this through the customer video portal,
+          website, social media and other platforms.
+        </p>
+        <div className="flex justify-center items-center">
+          <FormCheckboxInput
+            name="authorized_to_share"
+            current={this.state.authorized_to_share}
+            label="I Authorize this footage"
+            handleCheck={this.handleAuthorizationCheck}
+          />
+        </div>
+      </div>
+    );
+  };
+
   render() {
     return (
       <form className="px-4 mt-8" onSubmit={this.handleFormSubmit}>
         {this.renderTextInputs()}
         {this.renderCameraSelector()}
         {this.renderCategorySelection()}
-        <div>
-          <FormSubmitButton />
-        </div>
+        {this.renderAuthorization()}
+        <FormSubmitButton />
       </form>
     );
   }
