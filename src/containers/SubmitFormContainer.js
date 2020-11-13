@@ -64,7 +64,7 @@ class SubmitFormContainer extends Component {
           value={this.state.description}
           handleFormInputChange={this.handleFormInputChange}
         />
-        <p className="text-sm text-center mb-2">
+        <p className="text-sm text-center mb-2 text-mevo-dark-grey">
           Please submit 1080p HD YouTube clip
         </p>
         <FormTextInput
@@ -73,7 +73,7 @@ class SubmitFormContainer extends Component {
           value={this.state.youtube_url}
           handleFormInputChange={this.handleFormInputChange}
         />
-        <p className="text-sm text-center mb-2">
+        <p className="text-sm text-center mb-2 text-mevo-dark-grey">
           Emails are not shared publicly
         </p>
         <FormTextInput
@@ -141,7 +141,7 @@ class SubmitFormContainer extends Component {
           Mevo Inc, permission to share this through the customer video portal,
           website, social media and other platforms.
         </p>
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center my-2">
           <FormCheckboxInput
             name="authorized_to_share"
             current={this.state.authorized_to_share}
@@ -155,7 +155,10 @@ class SubmitFormContainer extends Component {
 
   render() {
     return (
-      <form className="px-4 mt-8" onSubmit={this.handleFormSubmit}>
+      <form
+        className="px-4 mt-8 text-mevo-blue"
+        onSubmit={this.handleFormSubmit}
+      >
         {this.renderTextInputs()}
         {this.renderCameraSelector()}
         {this.renderCategorySelection()}

@@ -5,7 +5,7 @@ const FormSubmitButton = () => {
     <input
       type="submit"
       value="Submit"
-      className="bg-red-600 text-white w-full py-3 rounded-full"
+      className="bg-mevo-red text-white w-full py-3 rounded-full"
     />
   );
 };
