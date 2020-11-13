@@ -3,7 +3,7 @@ import SubmitFormContainer from "../containers/SubmitFormContainer";
 
 const SubmitPage = () => {
   return (
-    <div>
+    <div className="pb-10">
       <div className=" bg-gray-600 text-white px-4 py-10">
         <h1 className="text-4xl">
           Submit your <br />
