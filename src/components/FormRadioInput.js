@@ -1,18 +1,13 @@
 import React from "react";
 
-const FormRadioInput = ({
-  name,
-  value,
-  currentModel,
-  handleFormInputChange,
-}) => {
+const FormRadioInput = ({ name, value, current, handleFormInputChange }) => {
   return (
     <label>
       <input
         type="radio"
         name={name}
         value={value}
-        checked={currentModel === value}
+        checked={current === value}
         onChange={handleFormInputChange}
       />
       <span className="ml-2">{value}</span>
