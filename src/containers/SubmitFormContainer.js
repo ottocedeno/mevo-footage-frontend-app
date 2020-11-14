@@ -3,6 +3,7 @@ import FormTextInput from "../components/FormTextInput";
 import FormRadioInput from "../components/FormRadioInput";
 import FormCheckboxInput from "../components/FormCheckboxInput";
 import FormSubmitButton from "../components/FormSubmitButton";
+import { submitVideoData } from "../utilities/fetchData";
 
 class SubmitFormContainer extends Component {
   constructor(props) {
@@ -47,6 +48,7 @@ class SubmitFormContainer extends Component {
   handleFormSubmit = (event) => {
     event.preventDefault();
     console.log(this.state);
+    submitVideoData({ video: this.state });
   };
 
   renderTextInputs = () => {
