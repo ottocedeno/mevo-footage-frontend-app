@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import FormTextInput from "../components/FormTextInput";
 import FormRadioInput from "../components/FormRadioInput";
 import FormCheckboxInput from "../components/FormCheckboxInput";
+import FormErrors from "../components/FormErrors";
 import FormSubmitButton from "../components/FormSubmitButton";
 import { submitVideoData } from "../utilities/fetchData";
 
@@ -45,12 +46,18 @@ class SubmitFormContainer extends Component {
     });
   };
 
-  handleAuthorizationCheck = (event) => {
+  handleAuthorizationCheck = () => {
     this.setState({
       video: {
         ...this.state.video,
         authorized_to_share: !this.state.authorized_to_share,
       },
+    });
+  };
+
+  updateErrors = (errors) => {
+    this.setState({
+      errors,
     });
   };
 
@@ -60,9 +67,7 @@ class SubmitFormContainer extends Component {
       .then((response) => response.json())
       .then((result) => {
         if (!!result.errors) {
-          this.setState({
-            errors: result.errors,
-          });
+          this.updateErrors(result.errors);
         }
       });
   };
@@ -204,7 +209,7 @@ class SubmitFormContainer extends Component {
         {this.renderCameraSelector()}
         {this.renderCategorySelection()}
         {this.renderAuthorization()}
-        {this.renderErrors()}
+        <FormErrors errors={this.state.errors} />
         <FormSubmitButton />
       </form>
     );
