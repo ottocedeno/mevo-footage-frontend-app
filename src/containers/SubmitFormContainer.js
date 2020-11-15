@@ -9,13 +9,16 @@ class SubmitFormContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: "",
-      description: "",
-      youtube_url: "",
-      user_email: "",
-      model: this.cameras[0],
-      category_name: this.categories[0],
-      authorized_to_share: false,
+      video: {
+        title: "",
+        description: "",
+        youtube_url: "",
+        user_email: "",
+        model: this.cameras[0],
+        category_name: this.categories[0],
+        authorized_to_share: false,
+      },
+      errors: [],
     };
   }
 
@@ -35,20 +38,33 @@ class SubmitFormContainer extends Component {
 
   handleFormInputChange = (event) => {
     this.setState({
-      [event.target.name]: event.target.value,
+      video: {
+        ...this.state.video,
+        [event.target.name]: event.target.value,
+      },
     });
   };
 
   handleAuthorizationCheck = (event) => {
     this.setState({
-      authorized_to_share: !this.state.authorized_to_share,
+      video: {
+        ...this.state.video,
+        authorized_to_share: !this.state.authorized_to_share,
+      },
     });
   };
 
   handleFormSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state);
-    submitVideoData({ video: this.state });
+    submitVideoData({ video: this.state.video })
+      .then((response) => response.json())
+      .then((result) => {
+        if (!!result.errors) {
+          this.setState({
+            errors: result.errors,
+          });
+        }
+      });
   };
 
   renderTextInputs = () => {
@@ -57,13 +73,13 @@ class SubmitFormContainer extends Component {
         <FormTextInput
           name="title"
           placeholder="Video Title"
-          value={this.state.title}
+          value={this.state.video.title}
           handleFormInputChange={this.handleFormInputChange}
         />
         <FormTextInput
           name="description"
           placeholder="Quick Description"
-          value={this.state.description}
+          value={this.state.video.description}
           handleFormInputChange={this.handleFormInputChange}
         />
         <p className="text-sm text-center mb-2 text-mevo-dark-grey">
@@ -72,7 +88,7 @@ class SubmitFormContainer extends Component {
         <FormTextInput
           name="youtube_url"
           placeholder="YouTube Link"
-          value={this.state.youtube_url}
+          value={this.state.video.youtube_url}
           handleFormInputChange={this.handleFormInputChange}
         />
         <p className="text-sm text-center mb-2 text-mevo-dark-grey">
@@ -81,7 +97,7 @@ class SubmitFormContainer extends Component {
         <FormTextInput
           name="user_email"
           placeholder="Contact Email"
-          value={this.state.user_email}
+          value={this.state.video.user_email}
           handleFormInputChange={this.handleFormInputChange}
         />
       </div>
@@ -101,7 +117,7 @@ class SubmitFormContainer extends Component {
                 key={id}
                 name="model"
                 value={camera}
-                current={this.state.model}
+                current={this.state.video.model}
                 handleFormInputChange={this.handleFormInputChange}
               />
             );
@@ -124,7 +140,7 @@ class SubmitFormContainer extends Component {
                 key={id}
                 name="category_name"
                 value={category}
-                current={this.state.category_name}
+                current={this.state.video.category_name}
                 handleFormInputChange={this.handleFormInputChange}
               />
             );
@@ -146,13 +162,36 @@ class SubmitFormContainer extends Component {
         <div className="flex justify-center items-center my-2">
           <FormCheckboxInput
             name="authorized_to_share"
-            current={this.state.authorized_to_share}
+            current={this.state.video.authorized_to_share}
             label="I Authorize this footage"
             handleCheck={this.handleAuthorizationCheck}
           />
         </div>
       </div>
     );
+  };
+
+  renderErrors = () => {
+    if (this.state.errors.length > 0) {
+      return (
+        <div className="border border-mevo-red bg-red-200 text-mevo-red text-sm rounded my-6 py-3 px-4">
+          <p className="font-bold uppercase mb-1 text-center">
+            Please update the following
+          </p>
+          <ul className="ml-4">
+            {this.state.errors.map((error, id) => {
+              return (
+                <li key={id} className="list-disc">
+                  {error}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      );
+    } else {
+      return null;
+    }
   };
 
   render() {
@@ -165,6 +204,7 @@ class SubmitFormContainer extends Component {
         {this.renderCameraSelector()}
         {this.renderCategorySelection()}
         {this.renderAuthorization()}
+        {this.renderErrors()}
         <FormSubmitButton />
       </form>
     );
