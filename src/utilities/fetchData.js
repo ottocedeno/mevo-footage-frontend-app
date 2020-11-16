@@ -8,3 +8,13 @@ export const submitVideoData = (videoObject) => {
     body: JSON.stringify(videoObject),
   });
 };
+
+export const fetchCategoriesAndModels = () => {
+  return fetch("http://127.0.0.1:3000/video-options", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+  });
+};
