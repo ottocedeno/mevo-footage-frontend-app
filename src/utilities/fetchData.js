@@ -9,7 +9,7 @@ export const submitVideoData = (videoObject) => {
   });
 };
 
-export const fetchCategoriesAndModels = () => {
+export const fetchCategoriesAndCameras = () => {
   return fetch("http://127.0.0.1:3000/video-options", {
     method: "GET",
     headers: {
