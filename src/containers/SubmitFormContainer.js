@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import FormTextInput from "../components/FormTextInput";
-import FormRadioInput from "../components/FormRadioInput";
-import FormCheckboxInput from "../components/FormCheckboxInput";
+import FormTextGroup from "../components/FormTextGroup";
+import FormRadioGroup from "../components/FormRadioGroup";
+
+import FormAuthorization from "../components/FormAuthorization";
 import FormErrors from "../components/FormErrors";
 import FormSubmitButton from "../components/FormSubmitButton";
 import { submitVideoData } from "../utilities/fetchData";
@@ -17,27 +18,13 @@ class SubmitFormContainer extends Component {
         description: "",
         youtube_url: "",
         user_email: "",
-        model: this.cameras[0],
-        category_name: this.categories[0],
+        model: "Mevo Plus",
+        category_name: "House of Worship",
         authorized_to_share: false,
       },
       errors: [],
     };
   }
-
-  cameras = ["Mevo Plus", "Mevo Start", "Mevo Core"];
-
-  categories = [
-    "House of Worship",
-    "Sports",
-    "Government",
-    "Conferences",
-    "Education",
-    "Gaming",
-    "Fitness",
-    "Hobbies",
-    "Music",
-  ];
 
   handleFormInputChange = (event) => {
     this.setState({
@@ -74,121 +61,34 @@ class SubmitFormContainer extends Component {
       });
   };
 
-  renderTextInputs = () => {
-    return (
-      <div>
-        <FormTextInput
-          name="title"
-          placeholder="Video Title"
-          value={this.state.video.title}
-          handleFormInputChange={this.handleFormInputChange}
-        />
-        <FormTextInput
-          name="description"
-          placeholder="Quick Description"
-          value={this.state.video.description}
-          handleFormInputChange={this.handleFormInputChange}
-        />
-        <p className="text-sm text-center mb-2 text-mevo-dark-grey">
-          Please submit 1080p HD YouTube clip
-        </p>
-        <FormTextInput
-          name="youtube_url"
-          placeholder="YouTube Link"
-          value={this.state.video.youtube_url}
-          handleFormInputChange={this.handleFormInputChange}
-        />
-        <p className="text-sm text-center mb-2 text-mevo-dark-grey">
-          Emails are not shared publicly
-        </p>
-        <FormTextInput
-          name="user_email"
-          placeholder="Contact Email"
-          value={this.state.video.user_email}
-          handleFormInputChange={this.handleFormInputChange}
-        />
-      </div>
-    );
-  };
-
-  renderCameraSelector = () => {
-    return (
-      <div>
-        <p className="text-center uppercase font-bold text-sm">
-          Footage shot with
-        </p>
-        <div className="flex flex-col mt-2 mb-4 pl-4">
-          {this.props.cameras.map((camera, id) => {
-            return (
-              <FormRadioInput
-                key={id}
-                name="model"
-                value={camera}
-                current={this.state.video.model}
-                handleFormInputChange={this.handleFormInputChange}
-              />
-            );
-          })}
-        </div>
-      </div>
-    );
-  };
-
-  renderCategorySelection = () => {
-    return (
-      <div>
-        <p className="text-center uppercase font-bold text-sm">
-          category (select one)
-        </p>
-        <div className="flex mt-2 mb-4 flex-col pl-4">
-          {this.props.categories.map((category, id) => {
-            return (
-              <FormRadioInput
-                key={id}
-                name="category_name"
-                value={category}
-                current={this.state.video.category_name}
-                handleFormInputChange={this.handleFormInputChange}
-              />
-            );
-          })}
-        </div>
-      </div>
-    );
-  };
-
-  renderAuthorization = () => {
-    return (
-      <div className="bg-gray-200 py-3 rounded-md mb-6">
-        <p className="text-center uppercase font-bold text-sm">Authorization</p>
-        <p className="text-sm px-4 mt-2">
-          You authorize that you are the owner of this content and hereby give
-          Mevo Inc, permission to share this through the customer video portal,
-          website, social media and other platforms.
-        </p>
-        <div className="flex justify-center items-center my-2">
-          <FormCheckboxInput
-            name="authorized_to_share"
-            current={this.state.video.authorized_to_share}
-            label="I Authorize this footage"
-            handleCheck={this.handleAuthorizationCheck}
-          />
-        </div>
-      </div>
-    );
-  };
-
   render() {
-    console.log(this.props);
     return (
       <form
         className="px-4 mt-8 text-mevo-blue"
         onSubmit={this.handleFormSubmit}
       >
-        {this.renderTextInputs()}
-        {this.renderCameraSelector()}
-        {this.renderCategorySelection()}
-        {this.renderAuthorization()}
+        <FormTextGroup
+          video={this.state.video}
+          handleFormInputChange={this.handleFormInputChange}
+        />
+        <FormRadioGroup
+          title="Footage shot with"
+          options={this.props.cameras}
+          name="model"
+          current={this.state.video.model}
+          handleFormInputChange={this.handleFormInputChange}
+        />
+        <FormRadioGroup
+          title="category (select one)"
+          options={this.props.categories}
+          name="category_name"
+          current={this.state.video.category_name}
+          handleFormInputChange={this.handleFormInputChange}
+        />
+        <FormAuthorization
+          current={this.state.video.authorized_to_share}
+          handleAuthorizationCheck={this.handleAuthorizationCheck}
+        />
         <FormErrors errors={this.state.errors} />
         <FormSubmitButton />
       </form>
