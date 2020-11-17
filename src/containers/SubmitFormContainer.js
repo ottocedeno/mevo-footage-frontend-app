@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+
 import FormTextInput from "../components/FormTextInput";
 import FormRadioInput from "../components/FormRadioInput";
 import FormCheckboxInput from "../components/FormCheckboxInput";
@@ -116,7 +118,7 @@ class SubmitFormContainer extends Component {
           Footage shot with
         </p>
         <div className="flex flex-col mt-2 mb-4 pl-4">
-          {this.cameras.map((camera, id) => {
+          {this.props.cameras.map((camera, id) => {
             return (
               <FormRadioInput
                 key={id}
@@ -139,7 +141,7 @@ class SubmitFormContainer extends Component {
           category (select one)
         </p>
         <div className="flex mt-2 mb-4 flex-col pl-4">
-          {this.categories.map((category, id) => {
+          {this.props.categories.map((category, id) => {
             return (
               <FormRadioInput
                 key={id}
@@ -176,30 +178,8 @@ class SubmitFormContainer extends Component {
     );
   };
 
-  renderErrors = () => {
-    if (this.state.errors.length > 0) {
-      return (
-        <div className="border border-mevo-red bg-red-200 text-mevo-red text-sm rounded my-6 py-3 px-4">
-          <p className="font-bold uppercase mb-1 text-center">
-            Please update the following
-          </p>
-          <ul className="ml-4">
-            {this.state.errors.map((error, id) => {
-              return (
-                <li key={id} className="list-disc">
-                  {error}
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      );
-    } else {
-      return null;
-    }
-  };
-
   render() {
+    console.log(this.props);
     return (
       <form
         className="px-4 mt-8 text-mevo-blue"
@@ -216,4 +196,11 @@ class SubmitFormContainer extends Component {
   }
 }
 
-export default SubmitFormContainer;
+const mapStateToProps = (state) => {
+  return {
+    categories: state.categories,
+    cameras: state.cameras,
+  };
+};
+
+export default connect(mapStateToProps)(SubmitFormContainer);
