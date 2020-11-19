@@ -1,12 +1,26 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
 import SubmitPage from "./pages/SubmitPage";
+import ConfirmationPage from "./pages/ConfirmationPage";
 
 import { fetchCategoriesAndCameras } from "./utilities/fetchData";
 import { connect } from "react-redux";
 
 class App extends Component {
   render() {
-    return <SubmitPage />;
+    return (
+      <Router>
+        <Switch>
+          <Route path="/submit-video">
+            <SubmitPage />
+          </Route>
+          <Route path="/confirmation">
+            <ConfirmationPage />
+          </Route>
+        </Switch>
+      </Router>
+    );
   }
 
   componentDidMount() {
