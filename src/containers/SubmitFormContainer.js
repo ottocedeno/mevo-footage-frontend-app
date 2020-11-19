@@ -10,8 +10,8 @@ import FormSubmitButton from "../components/FormSubmitButton";
 import { submitVideoData } from "../utilities/fetchData";
 
 class SubmitFormContainer extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       video: {
         title: "",
@@ -57,6 +57,8 @@ class SubmitFormContainer extends Component {
       .then((result) => {
         if (!!result.errors) {
           this.updateErrors(result.errors);
+        } else if (result.message === "Successful submission") {
+          this.props.setRedirect();
         }
       });
   };
