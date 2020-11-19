@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
+import VideosPage from "./pages/VideosPage";
 import SubmitPage from "./pages/SubmitPage";
 import ConfirmationPage from "./pages/ConfirmationPage";
 
@@ -17,6 +18,9 @@ class App extends Component {
           </Route>
           <Route path="/confirmation">
             <ConfirmationPage />
+          </Route>
+          <Route exact path="/">
+            <VideosPage />
           </Route>
         </Switch>
       </Router>

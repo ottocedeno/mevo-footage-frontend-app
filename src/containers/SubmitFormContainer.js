@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import FormTextGroup from "../components/FormTextGroup";
-import FormRadioGroup from "../components/FormRadioGroup";
+import FormTextGroup from "../components/formElements/FormTextGroup";
+import FormRadioGroup from "../components/formElements/FormRadioGroup";
 
-import FormAuthorization from "../components/FormAuthorization";
-import FormErrors from "../components/FormErrors";
-import FormSubmitButton from "../components/FormSubmitButton";
+import FormAuthorization from "../components/formElements/FormAuthorization";
+import FormErrors from "../components/formElements/FormErrors";
+import FormSubmitButton from "../components/formElements/FormSubmitButton";
 import { submitVideoData } from "../utilities/fetchData";
 
 class SubmitFormContainer extends Component {

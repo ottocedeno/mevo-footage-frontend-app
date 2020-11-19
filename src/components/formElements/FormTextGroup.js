@@ -1,5 +1,5 @@
 import React from "react";
-import FormTextInput from "../components/FormTextInput";
+import FormTextInput from "./FormTextInput";
 
 const FormInputGroup = ({ video, handleFormInputChange }) => {
   return (

@@ -1,5 +1,5 @@
 import React from "react";
-import FormCheckboxInput from "../components/FormCheckboxInput";
+import FormCheckboxInput from "./FormCheckboxInput";
 
 const FormAuthorization = ({ current, handleAuthorizationCheck }) => {
   return (

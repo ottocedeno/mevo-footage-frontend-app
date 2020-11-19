@@ -1,5 +1,5 @@
 import React from "react";
-import FormRadioInput from "../components/FormRadioInput";
+import FormRadioInput from "./FormRadioInput";
 
 const FormRadioGroup = ({
   title,
