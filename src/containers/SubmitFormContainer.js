@@ -7,7 +7,7 @@ import FormRadioGroup from "../components/formElements/FormRadioGroup";
 import FormAuthorization from "../components/formElements/FormAuthorization";
 import FormErrors from "../components/formElements/FormErrors";
 import FormSubmitButton from "../components/formElements/FormSubmitButton";
-import { submitVideoData } from "../utilities/fetchData";
+import { submitVideoData } from "../utilities/requests";
 
 class SubmitFormContainer extends Component {
   constructor() {

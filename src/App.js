@@ -5,7 +5,7 @@ import VideosPage from "./pages/VideosPage";
 import SubmitPage from "./pages/SubmitPage";
 import ConfirmationPage from "./pages/ConfirmationPage";
 
-import { fetchCategoriesAndCameras } from "./utilities/fetchData";
+import { fetchCategoriesAndCameras } from "./utilities/requests";
 import { connect } from "react-redux";
 
 class App extends Component {
