@@ -3,6 +3,7 @@ import React from "react";
 import PageHeader from "../components/UIelements/PageHeader";
 import PrimaryButton from "../components/UIelements/PrimaryButton";
 import VideoFilterContainer from "../containers/VideoFilterContainer";
+import VideosContainer from "../containers/VideosContainer";
 
 const VideosPage = () => {
   return (
@@ -18,6 +19,7 @@ const VideosPage = () => {
         </div>
       </PageHeader>
       <VideoFilterContainer />
+      <VideosContainer />
     </div>
   );
 };
