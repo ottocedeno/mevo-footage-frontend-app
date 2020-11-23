@@ -12,7 +12,7 @@ const ConfirmationPage = () => {
         In the meantime, check out other video submissions from our community
       </p>
       <div className="mt-6 w-full">
-        <PrimaryButton url="/submit-video" label="Back to Videos" />
+        <PrimaryButton url="/" label="Back to Videos" />
       </div>
     </div>
   );
