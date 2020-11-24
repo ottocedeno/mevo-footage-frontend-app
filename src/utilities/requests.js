@@ -10,7 +10,7 @@ export const submitVideoData = (videoData) => {
 };
 
 export const fetchCategoriesAndCameras = () => {
-  return fetch("http://127.0.0.1:3000/video-options", {
+  return fetch("http://127.0.0.1:3000/application-options", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
