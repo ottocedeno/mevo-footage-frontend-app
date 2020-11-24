@@ -15,7 +15,7 @@ const VideosPage = () => {
           your footage for a chance to win free gear.
         </PageHeader.SubHeading>
         <div className="mt-4 w-3/5">
-          <PrimaryButton label="Submit your footage" url="/submit-video" />
+          <PrimaryButton label="Submit your video" url="/submit-video" />
         </div>
       </PageHeader>
       <VideoFilterContainer />
