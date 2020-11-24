@@ -48,7 +48,6 @@ class VideoFilterContainer extends Component {
         <div className="flex overflow-x-auto pl-4 items-baseline text-center py-3">
           {this.renderFilters(this.props.cameras, "camera")}
         </div>
-
         <h2 className="text-mevo-red font-bold text-center mt-3">CATEGORY</h2>
         <div className="flex overflow-x-auto pl-4 items-baseline text-center mt-3">
           {this.renderFilters(this.props.categories, "category")}
@@ -58,7 +57,6 @@ class VideoFilterContainer extends Component {
   }
 
   componentDidUpdate() {
-    // console.log(this.state);
     fetchVideos(this.state)
       .then((response) => response.json())
       .then((videos) => this.props.loadVideos(videos));
