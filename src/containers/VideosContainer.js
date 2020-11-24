@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import VideoCard from "../components/VideoCard";
 
 class VideoContainer extends Component {
   render() {
-    console.log(this.props.videos);
     return (
-      <div>
-        <h1>Here's my list of videos below...</h1>
+      <div className="mt-10">
+        {this.props.videos.map((videoData, id) => (
+          <VideoCard videoData={videoData} key={id} />
+        ))}
       </div>
     );
   }
