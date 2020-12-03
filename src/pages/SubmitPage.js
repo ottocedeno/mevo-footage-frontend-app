@@ -5,8 +5,8 @@ import PageHeader from "../components/UIelements/PageHeader";
 import SubmitFormContainer from "../containers/SubmitFormContainer";
 
 class SubmitPage extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       redirectToConfirmation: false,
     };
