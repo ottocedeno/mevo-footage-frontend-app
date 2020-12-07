@@ -27,7 +27,7 @@ class SubmitPage extends Component {
   render() {
     return (
       <>
-        <div className="pb-10">
+        <div className="pb-10 max-w-sm mx-auto">
           <PageHeader>
             <PageHeader.Title>Video Submission</PageHeader.Title>
             <PageHeader.SubHeading>

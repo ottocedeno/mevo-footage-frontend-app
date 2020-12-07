@@ -7,7 +7,7 @@ import VideosContainer from "../containers/VideosContainer";
 
 const VideosPage = () => {
   return (
-    <div>
+    <div className="max-w-sm mx-auto">
       <PageHeader>
         <PageHeader.Title>Mevo Video Gallery</PageHeader.Title>
         <PageHeader.SubHeading>
