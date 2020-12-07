@@ -1,5 +1,5 @@
 export const submitVideoData = (videoData) => {
-  return fetch("http://127.0.0.1:3000/videos", {
+  return fetch("https://footage-api.herokuapp.com/videos", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -10,7 +10,7 @@ export const submitVideoData = (videoData) => {
 };
 
 export const fetchCategoriesAndCameras = () => {
-  return fetch("http://127.0.0.1:3000/application-options", {
+  return fetch("https://footage-api.herokuapp.com/application-options", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -21,7 +21,7 @@ export const fetchCategoriesAndCameras = () => {
 
 export const fetchVideos = ({ camera, category }) => {
   return fetch(
-    `http://127.0.0.1:3000/videos?camera=${camera}&category=${category}`,
+    `https://footage-api.herokuapp.com/videos?camera=${camera}&category=${category}`,
     {
       method: "GET",
       headers: {
