@@ -1,7 +1,7 @@
 import React from "react";
 
-import PageHeader from "../components/UIelements/PageHeader";
-import PrimaryButton from "../components/UIelements/PrimaryButton";
+import PageHeader from "../components/ui/PageHeader";
+import PrimaryButton from "../components/ui/PrimaryButton";
 import VideoFilterContainer from "../containers/VideoFilterContainer";
 import VideosContainer from "../containers/VideosContainer";
 

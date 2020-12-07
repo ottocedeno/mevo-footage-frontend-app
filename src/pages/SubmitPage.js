@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 
-import PageHeader from "../components/UIelements/PageHeader";
+import PageHeader from "../components/ui/PageHeader";
 import SubmitFormContainer from "../containers/SubmitFormContainer";
 
 class SubmitPage extends Component {

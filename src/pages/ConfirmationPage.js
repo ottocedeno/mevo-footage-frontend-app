@@ -1,5 +1,5 @@
 import React from "react";
-import PrimaryButton from "../components/UIelements/PrimaryButton";
+import PrimaryButton from "../components/ui/PrimaryButton";
 
 const ConfirmationPage = () => {
   return (
